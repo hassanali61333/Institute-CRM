@@ -1,0 +1,167 @@
+.top-banner {
+  background-color: rgb(226, 20, 20);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  padding: 5px;
+  height: 40px;
+  overflow: hidden;
+  text-align: center;
+  color: rgb(235, 221, 221);
+}
+.header{
+  background-color: black;
+}
+
+.navbar-brand{
+  display: flex;
+  align-items: center;
+  gap: 50px;
+
+}
+.navbar-brand img{
+  margin: 0px;
+  padding: 0px;
+}
+.input{
+  display: flex;
+}
+.navbar{
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  background-color: black;
+}
+.navbar-brand ul{
+  display: flex;
+  padding: 0px;
+  margin: 0px;
+}
+.navbar-brand ul li{
+  list-style: none;
+  margin:  0px 10px;
+  color: white;
+}
+
+
+
+
+/* animation text style */
+.animated-text {
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 9s ease-in-out infinite;
+}
+
+/* remove extra space between h5s */
+.top-banner h5 {
+  margin: 0;
+  line-height: 40px;
+}
+
+/* keyframes for sliding text animation */
+@keyframes slideUp {
+  0%, 10% {
+    transform: translateY(0);
+  }
+  25%, 35% {
+    transform: translateY(-40px);
+  }
+  50%, 60% {
+    transform: translateY(-80px);
+  }
+  85%, 100% {
+    transform: translateY(0);
+  }
+}
+
+
+.top-heading {
+  background-color: rgb(161, 105, 25);
+  height: 30px;
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  justify-content: flex-start;
+}
+.top-heading h5{
+  margin: 0;
+}
+/* .logo img{ */
+  /* height: 160px;
+  width: 170px; */
+
+
+/* .navbar{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.logo {
+  display: flex;
+  justify-content: space-around;
+
+  width: 50%;
+}
+
+
+
+
+nav ul{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0px;
+  gap: 14px;
+
+ 
+}
+li a{
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+}
+li a:hover{
+ color:rgb(155 113 44) ; 
+}
+ .nav-btn {
+  background-color: black;
+  color:rgb(155 113 44);
+ padding: 8px 15px;
+  border: 2px solid rgb(155 113 44);
+  border-radius: 10px;
+}
+
+input{
+  height:45px;
+  width: 100% ;
+padding-left: 10px;
+  border-radius: 12px;
+}
+
+.input-box{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 65px;
+  gap: 4px;
+  width: 50%;
+}
+
+
+.nav-btn  button{
+height: 40px;
+width: 90px;
+border-radius: 7px
+}
+
+.input-box button:hover{
+transition: all 0.2s ease-in-out;
+transform: scale(1.06);
+
+
+} */

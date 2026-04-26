@@ -1,0 +1,72 @@
+.row ul li{
+text-decoration: none;
+list-style: none;
+
+
+}
+.column p{
+    color: white;
+}
+.footer{
+    background-color: black;
+    margin-top: 40px;
+    padding: 40px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.footer-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.row ul{
+    padding: 0px;
+}
+.column{
+    display: flex;
+    gap: 17px;
+    flex-direction: column;
+    text-align: left;
+    padding-left: 30px;
+
+   
+}
+
+.column h5{
+   color: rgb(161, 105, 25);
+   font-weight: 700;
+
+}
+.column ul a{
+    text-decoration: none;
+    color: white;
+}
+.column ul a:hover{
+    color: rgb(161, 105, 25);
+}
+.icons{
+    display: flex;
+    gap: 30px;
+}
+.fas:hover{
+    color: rgb(161, 105, 25);
+    
+
+}
+.fa-solid{
+    background-color: black;
+}
+.line{
+    height: 1x;
+    background-color: white;
+    color: white;
+    width: 100%;
+}
+.location{
+color: white;
+padding: 4px 10px;
+}

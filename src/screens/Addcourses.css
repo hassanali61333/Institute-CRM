@@ -1,0 +1,318 @@
+/* Addcourses.css - Orange and White Theme */
+
+/* Container Styles */
+.addcourses-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(255, 140, 0, 0.15);
+  border: 1px solid #ff8c00;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative orange accent */
+.addcourses-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #ff8c00, #ffb347, #ff8c00);
+}
+
+/* Title Styles */
+.addcourses-title {
+  color: #ff8c00;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+}
+
+.title-icon {
+  font-size: 32px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Form Styles */
+.addcourses-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #ff8c00;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.required {
+  color: #ff4444;
+  font-size: 14px;
+}
+
+/* Input Styles */
+.orange-input {
+  padding: 14px 16px;
+  border: 2px solid #ffe0b3;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  color: #333333;
+  font-family: inherit;
+}
+
+.orange-input:hover {
+  border-color: #ffb347;
+}
+
+.orange-input:focus {
+  border-color: #ff8c00;
+  box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.orange-input::placeholder {
+  color: #aaa;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.submit-btn,
+.reset-btn {
+  flex: 1;
+  min-width: 150px;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: 0.5px;
+}
+
+.submit-btn {
+  background-color: #ff8c00;
+  color: white;
+  border: 2px solid #ff8c00;
+}
+
+.submit-btn:hover {
+  background-color: #ff6b00;
+  border-color: #ff6b00;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.3);
+}
+
+.reset-btn {
+  background-color: white;
+  color: #ff8c00;
+  border: 2px solid #ff8c00;
+}
+
+.reset-btn:hover {
+  background-color: #fff1e0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 140, 0, 0.15);
+}
+
+.submit-btn:active,
+.reset-btn:active {
+  transform: translateY(0);
+}
+
+.btn-icon {
+  font-size: 18px;
+}
+
+/* Preview Section */
+.preview-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #fff9f0;
+  border-radius: 12px;
+  border-left: 6px solid #ff8c00;
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.preview-title {
+  color: #ff8c00;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.preview-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.preview-content p {
+  color: #555;
+  font-size: 15px;
+  padding: 8px 12px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #ffe0b3;
+}
+
+.preview-content strong {
+  color: #ff8c00;
+  min-width: 100px;
+  display: inline-block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .addcourses-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .addcourses-title {
+    font-size: 24px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .submit-btn,
+  .reset-btn {
+    width: 100%;
+  }
+
+  .preview-content p {
+    flex-direction: column;
+  }
+
+  .preview-content strong {
+    min-width: auto;
+    margin-bottom: 4px;
+  }
+}
+
+/* Loading State (Optional) */
+.submit-btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+  position: relative;
+  padding-left: 40px;
+}
+
+.submit-btn.loading::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success Message Animation */
+@keyframes successPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.submit-btn.success {
+  background-color: #28a745;
+  border-color: #28a745;
+  animation: successPulse 0.5s ease;
+}
+
+/* Error State */
+.orange-input.error {
+  border-color: #ff4444;
+  background-color: #fff8f8;
+}
+
+.error-message {
+  color: #ff4444;
+  font-size: 13px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Custom Scrollbar */
+.addcourses-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.addcourses-container::-webkit-scrollbar-track {
+  background: #fff1e0;
+  border-radius: 4px;
+}
+
+.addcourses-container::-webkit-scrollbar-thumb {
+  background: #ff8c00;
+  border-radius: 4px;
+}
+
+.addcourses-container::-webkit-scrollbar-thumb:hover {
+  background: #ff6b00;
+}

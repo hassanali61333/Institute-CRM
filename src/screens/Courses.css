@@ -1,0 +1,145 @@
+.courses-div{
+    position: relative;
+    max-width: 100%;
+}
+
+.courses{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 20px;
+    padding-left: 270px;
+}
+.box-container li{
+    list-style: none;
+}
+.delcourse{
+        display: flex;
+    justify-content:flex-end ;
+    position: relative;
+    top: 50px;
+    left: 215px;
+    z-index: 1;
+}
+
+/* Box wrap */
+.box-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    margin-left: -2px;
+}
+
+.search-container {
+    min-width: 300px;         max-width: 700px;     
+    display: inline-block;
+}
+
+.search-container input {
+    width: 100%;        
+    min-width: 200px;
+    max-width: 100%;
+    padding: 8px 10px;
+    border-radius: 17px;
+
+}
+@media (max-width:600px) {
+   .search-container input {
+    width: auto;           
+    min-width: 200px;
+    max-width: 100%;
+    padding: 8px 40px;
+    border-radius: 17px;
+    margin-left: 18px;
+
+}
+.search-container {
+    min-width: 300px;      
+    max-width: 700px;     
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+}
+}
+/* Box container */
+.box-container {
+    position: relative;
+    flex: 0 0 250px;
+    max-width: 250px;
+}
+
+
+
+.fixprice{
+    font-weight: 700;
+    color: #025700;
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 53px;
+}
+
+.hover-buttons {
+    position: absolute;
+    bottom: 90px;
+    left: 58px;
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-container:hover .hover-buttons {
+    opacity: 1;
+}
+
+.hover-buttons button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background: #000000;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.hover-buttons button:hover {
+    background: #e5692c;
+}
+
+@media screen and (max-width: 800px) {
+    .courses{
+        padding-left: 0px;
+        gap: 0px;
+    }
+}
+
+
+   
+  @media screen and (max-width: 500px) {
+ .hover-buttons {
+    position: absolute;
+    bottom: 90px;
+    left: 58px;
+    display: flex;
+    gap: 10px;
+    opacity: 1;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+}
+

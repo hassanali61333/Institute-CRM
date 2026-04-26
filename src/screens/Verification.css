@@ -1,0 +1,253 @@
+.verify-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.verify-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.verify-header h1 {
+  color: #ff6f00;
+  font-size: 28px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.verify-header p {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.email-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #f8f9ff;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  border-left: 4px solid #000000;
+}
+
+.email-icon {
+  color: #667eea;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.email-label {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.email-address {
+  color: #333;
+  font-weight: 600;
+  font-size: 15px;
+  word-break: break-all;
+  text-align: left;
+}
+
+.otp-wrapper {
+  margin-bottom: 25px;
+}
+
+.otp-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #667eea;
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.lock-icon {
+  font-size: 16px;
+}
+
+.otp-inputs {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  position: relative;
+}
+
+.otp-box {
+  width: 40px;
+  height: 50px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  background: #f9f9f9;
+  cursor: text;
+  transition: all 0.3s ease;
+}
+
+.otp-box.filled {
+  border-color: #667eea;
+  background: #f0f4ff;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+}
+
+.otp-box.active {
+  border-color: #667eea;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { border-color: #667eea; }
+  50% { border-color: #764ba2; }
+}
+
+.otp-hidden-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #d32f2f;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 4px solid #d32f2f;
+  font-size: 14px;
+}
+
+.timer {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  font-size: 15px;
+  color: #666;
+}
+
+.timer-count {
+  color: #667eea;
+  font-weight: 700;
+  margin-left: 5px;
+  font-size: 18px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.verify-btn, .resend-btn, .back-link {
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.verify-btn {
+  border: 2px solid black;
+  color: black;
+}
+
+.verify-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.verify-btn.active {
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.verify-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+.resend-btn {
+  background: transparent;
+  color: #000000;
+  border: 2px solid #667eea;
+}
+
+.resend-btn:hover:not(:disabled) {
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.resend-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.back-link {
+  background: transparent;
+  color: #666;
+  font-size: 15px;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.back-link:hover {
+  color: #ff0000;
+  background: #f5f5f5;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .verify-card {
+    padding: 30px 20px;
+    margin: 15px;
+  }
+  
+  .otp-box {
+    width: 60px;
+    height: 70px;
+    font-size: 28px;
+  }
+  
+  .verify-btn, .resend-btn {
+    padding: 14px;
+  }
+}

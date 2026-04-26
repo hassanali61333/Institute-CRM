@@ -1,0 +1,60 @@
+
+
+.card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+      background: linear-gradient(135deg, rgb(255, 184, 108) 80%, rgb(255, 105, 180) 20%);
+      height: 200px;
+      border-radius: 20px;
+      border: none;
+      padding: 5px;
+      
+}
+.card h5{
+  color: white;
+}
+.card:hover{
+  animation:  all 7s ease-out;
+  transform: scale(1.03);
+}
+.card img{
+  height: 130px;
+  width: 170px;
+
+}
+
+
+.Verified-Refurbished{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.info{
+  display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+padding: 40px 20px;
+ 
+
+
+}
+.info ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+   background-color: rgb(245, 245, 248);
+text-align: start;
+  max-width:650px;
+  padding: 34px 35px;
+  width: 100%;
+font-size: 19px;
+font-family: sans-serif;
+ box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+
+}
+.info ul li{
+  list-style: none;
+}

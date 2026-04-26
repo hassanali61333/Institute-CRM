@@ -1,0 +1,101 @@
+.feeslip-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-left: 270px;
+}
+
+@media screen  and (max-width :800px){
+  .feeslip-wrapper{
+    padding: 0px;
+    margin-top: 30px;
+  }
+  
+}
+
+/* Card */
+.feeslip-card {
+  margin: 0px 20px;
+  width: 100%;
+  max-width: 450px;
+  padding: 40px 30px;
+  border-radius: 20px;
+    box-shadow: 0 6px 7px black;
+
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feeslip-card input{
+  padding: 10px ;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+
+.feeslip-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0px 9px rgba(0, 0, 0, 0.25);
+}
+
+.feeslip-card h1 {
+  font-size: 28px;
+  color: #ff4c05;
+  margin-bottom: 10px;
+}
+
+.feeslip-card p {
+  font-size: 14px;
+  color: white;
+  margin-bottom: 25px;
+}
+
+/* File input styled as button */
+.file-label {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border: 2px dashed #3b82f6;
+  border-radius: 12px;
+  background-color: #f0f9ff;
+  color: #1e3a8a;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+.file-label:hover {
+  background-color: #e0f2fe;
+  border-color: #2563eb;
+}
+
+.file-label input {
+  display: none;
+}
+
+/* Upload button */
+.upload-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #ff4c05;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-btn:hover:not(:disabled) {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.upload-btn:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
