@@ -1,23 +1,23 @@
+// src/screens/Userslip.jsx
 import React, { useState, useEffect } from "react";
-import { getsinglefeeslip } from "../screens/services/userService";
-import "../screens/Usersslip.css";
+import { getsinglefeeslip } from "./services/userService"; // 👈 adjust path
+import "./Usersslip.css";
 import { useSelector } from "react-redux";
 
 function Userslip() {
-
   const reduxUser = useSelector((state) => state.courses.user);
-  
+
   // Local user state with localStorage fallback
   const [user, setUser] = useState(reduxUser || null);
-
   const [feeSlip, setFeeSlip] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
 
   // Reload-safe: check localStorage if Redux empty
   useEffect(() => {
     if (!user) {
       const savedUser = localStorage.getItem("userdata");
-      if (savedUser) {
+      if (savedUser && savedUser !== "undefined") {
         setUser(JSON.parse(savedUser));
       }
     } else {
@@ -25,11 +25,14 @@ function Userslip() {
     }
   }, [user, reduxUser]);
 
-  const userId = user?.id; // ✅ safe access
+  const userId = user?.id;
 
   useEffect(() => {
     const fetchSlip = async () => {
-      if (!userId) return;
+      if (!userId) {
+        setLoading(false);
+        return;
+      }
 
       try {
         const res = await getsinglefeeslip(userId);
@@ -37,20 +40,32 @@ function Userslip() {
 
         if (res.data && res.data.length > 0) {
           setFeeSlip(res.data[0]);
+        } else {
+          setFeeSlip(null);
         }
       } catch (err) {
         console.error("Error fetching fee slip:", err);
+        setFeeSlip(null);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchSlip();
   }, [userId]);
 
-  if (!feeSlip) return <p className="no-slip">No fee slip found</p>;
+  // ❌ OLD BUG: `if (!feeSlip) return <p>No slip</p>` — this was hiding the sidebar
+  // ✅ FIX: only show "no slip" inside the page body, sidebar stays visible
 
   return (
-    <>
-      <div className="userslip-page">
+    <div className="userslip-page">
+      {/* 🚫 REMOVED <Sidebar /> from here — it lives in App.js now */}
+
+      {loading ? (
+        <p className="no-slip">Loading...</p>
+      ) : !feeSlip ? (
+        <p className="no-slip">No fee slip found</p>
+      ) : (
         <div className="userslip-card">
           <h2 className="userslip-title">Your Fee Slip</h2>
 
@@ -88,7 +103,7 @@ function Userslip() {
                     alt={`Fee slip ${i + 1}`}
                     onClick={() =>
                       setSelectedImage(`https://azearn.com/fitapi/${imgUrl}`)
-                    } 
+                    }
                   />
                 ))}
               </div>
@@ -98,14 +113,14 @@ function Userslip() {
           {selectedImage && (
             <div
               className="image-modal"
-              onClick={() => setSelectedImage(null)} 
+              onClick={() => setSelectedImage(null)}
             >
               <img src={selectedImage} alt="Full View" />
             </div>
           )}
         </div>
-      </div>
-    </>
+      )}
+    </div>
   );
 }
 

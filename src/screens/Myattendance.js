@@ -5,6 +5,7 @@ import "../screens/Showattendance.css";
 import { useSelector } from "react-redux";
 import { getaattendance } from "../screens/services/userService";
 import { json } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 
 function Myattendance() {
   const [attendance, setAttendance] = useState([]);
@@ -122,6 +123,7 @@ console.log(attendanceid);
   if (loading) {
     return (
       <div className="attendance-container">
+        <Sidebar/>
         <div className="attendance-header">
           <h1>Attendance Records</h1>
           <p>Loading your attendance data...</p>

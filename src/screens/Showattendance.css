@@ -4,7 +4,7 @@
   max-width: 1200px;
   margin: 0 auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding-left: 270px;
+  /* ✅ no padding-left — App.js handles sidebar offset */
 }
 
 .attendance-header {

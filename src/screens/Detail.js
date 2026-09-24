@@ -2,6 +2,7 @@ import {  useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import fitpic from '../images/branchimg.jpeg'
 import {setcourseid} from "../store/Coursesslice"
+import Sidebar from "../components/Sidebar";
 
 function Detail() {
   const navigate = useNavigate()
@@ -27,6 +28,7 @@ console.log("course id type:", typeof coursesdata[0].id);
   return (
     <>
       <div className="detail-div">
+        <Sidebar/>
         <div className="detail-wrap">
 
           <div className="bg-img">

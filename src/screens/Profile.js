@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getuser } from "./services/userService";
 import "./Profile.css";
+import Sidebar from "../components/Sidebar";
 
 function Profile() {
    const reduxUser = useSelector((state) => state.courses.user);
@@ -123,6 +124,7 @@ function Profile() {
     <>
       
       <div className="profile-container">
+        <Sidebar/>
         <div className="profile-header">
           <h1>Student Profile</h1>
         </div>

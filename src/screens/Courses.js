@@ -8,6 +8,7 @@ import { coursesapi } from './services/userService.js';
 import { delcourse } from './services/userService.js';
 import { useEffect } from "react";
 import { original } from '@reduxjs/toolkit';
+import Sidebar from '../components/Sidebar.js';
 
 function Courses() {
     const dispatch =useDispatch()
@@ -101,6 +102,7 @@ if(respons.status)
         <>
            
             <div className='courses-div'>
+                <Sidebar/>
                 <div className='courses'>
                     <h1>
                         Our <span style={{ color: 'linear-gradient(135deg, #ff7b25 0%, #e5692c 100%)' }}>Courses</span>
