@@ -105,7 +105,7 @@ function FloatingWhatsApp() {
   return (
     <div className="wattsappbtn">
       <a
-        href="https://wa.me/923445701828"
+        href="https://wa.me/923405924211"
         target="_blank"
         rel="noopener noreferrer"
         style={{ color: "green", fontSize: "30px" }}

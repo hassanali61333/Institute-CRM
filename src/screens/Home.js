@@ -163,10 +163,10 @@ function Home() {
       {/* 🚫 No <Sidebar /> — it's rendered in App.js */}
 
       {/* HEADER */}
-      <div className="head">
+      <div className="head" style={{ width: "80%", maxWidth: "1000px",}}>
         <div
           className="head-icon"
-          style={{ position: "relative", width: "100%", maxWidth: "300px" }}
+          style={{ position: "relative",margin:"20px", width: "80%", maxWidth: "200px",height:"25px" }}
         >
           <input
             placeholder="Search screens"
