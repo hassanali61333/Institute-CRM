@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { LoginApi } from "./services/userService";
 import { useDispatch } from "react-redux";
 import { adduser, studentattendence, setgap, setsubmissionid, setformid } from "../store/Coursesslice";
-import { toast, ToastContainer, Bounce } from "react-toastify";
+import { toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.css";
-import { getFirebaseToken } from "../fire";
 import { tokenapi } from "./services/userService";
 
 function Login() {
@@ -29,13 +28,12 @@ function Login() {
         Math.cos(toRad(lat)) * Math.cos(toRad(oklat)) * Math.sin(dLng / 2) ** 2;
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       const distanceMeters = R * c * 1000;
-      
 
       console.log("Distance from Islamabad (meters):", distanceMeters.toFixed(0));
 
       if (distanceMeters < 150) {
         dispatch(setgap(distanceMeters));
-        localStorage.setItem("attendancedistance",JSON.stringify(distanceMeters))
+        localStorage.setItem("attendancedistance", JSON.stringify(distanceMeters));
         dispatch(studentattendence(true));
       } else {
         dispatch(studentattendence(false));
@@ -78,33 +76,30 @@ function Login() {
       const apiResponse = await LoginApi({ email, password });
 
       if (apiResponse.data.status) {
-
         dispatch(adduser(apiResponse.data.user));
-      dispatch(setsubmissionid(apiResponse.data.reultform?.uid ?? null));
-await localStorage.setItem("userdata",JSON.stringify(apiResponse.data.user))
-await localStorage.setItem("reultform",JSON.stringify(apiResponse.data.reultform?.uid))
+        dispatch(setsubmissionid(apiResponse.data.reultform?.uid ?? null));
+        localStorage.setItem("userdata", JSON.stringify(apiResponse.data.user));
+        localStorage.setItem("reultform", JSON.stringify(apiResponse.data.reultform?.uid));
 
-
-console.log(apiResponse);
+        console.log(apiResponse);
 
         getUserLocation();
-      const newToken = await getFirebaseToken();
-      console.log("Firebase token:", newToken);
 
-      if (apiResponse.data.user.token !== newToken) {
-        try {
-          const tokenResp = await tokenapi(apiResponse.data.user.id, newToken);
-        
-          console.log("Token updated:", tokenResp.data);
-        } catch (err) {
-          console.error("Token update failed:", err);
+        // 🔥 Firebase lazy load - sirf jab login ho jaye
+        const { getFirebaseToken } = await import("../fire");
+        const newToken = await getFirebaseToken();
+        console.log("Firebase token:", newToken);
+
+        if (apiResponse.data.user.token !== newToken) {
+          try {
+            const tokenResp = await tokenapi(apiResponse.data.user.id, newToken);
+            console.log("Token updated:", tokenResp.data);
+          } catch (err) {
+            console.error("Token update failed:", err);
+          }
+        } else {
+          console.log("Token same, no update needed");
         }
-      } else {
-        console.log("Token same, no update needed");
-      }
-
-
-
 
         toast.success("Login successful!", {
           position: "top-center",
@@ -112,10 +107,7 @@ console.log(apiResponse);
           transition: Bounce,
         });
         navigate("/home");
-
-      } 
-      
-      else {
+      } else {
         toast.error("Invalid email or password!", {
           position: "top-center",
           autoClose: 5000,
@@ -136,33 +128,39 @@ console.log(apiResponse);
   const handleKeyPress = (e) => {
     if (e.key === "Enter") handleLogin();
   };
-  useEffect(()=>{
-    checkLogin()
-  },[])
-const checkLogin = async () => {
-  let userdata = localStorage.getItem("userdata");
 
-  if (userdata) {
-    let data = JSON.parse(userdata);
+  useEffect(() => {
+    checkLogin();
+  }, []);
 
-    let reultform = localStorage.getItem("reultform");
-    let relutdata = reultform && reultform !== "undefined"
-      ? JSON.parse(reultform)
-      : null;
+  const checkLogin = async () => {
+    let userdata = localStorage.getItem("userdata");
 
-    dispatch(adduser(data));
-    dispatch(setsubmissionid(relutdata));
-    navigate("/home");
-  }
-};
+    if (userdata) {
+      let data = JSON.parse(userdata);
+
+      let reultform = localStorage.getItem("reultform");
+      let relutdata =
+        reultform && reultform !== "undefined" ? JSON.parse(reultform) : null;
+
+      dispatch(adduser(data));
+      dispatch(setsubmissionid(relutdata));
+      navigate("/home");
+    }
+  };
 
   return (
     <>
-
       <div className="login-container">
-        <div class="video-container">
-<p onClick={()=> navigate("https://youtu.be/AUSWNrXKoV4?si=u5Pd6ZbwaLyl99X6")}>How to use it? click on link.  👈</p>
-</div>
+        <div className="video-container">
+          <p
+            onClick={() =>
+              navigate("https://youtu.be/AUSWNrXKoV4?si=u5Pd6ZbwaLyl99X6")
+            }
+          >
+            How to use it? click on link. 👈
+          </p>
+        </div>
         <h1 className="welcome-title">
           Welcome to <span className="highlight">FIT Institute</span>
         </h1>
@@ -200,23 +198,16 @@ const checkLogin = async () => {
               </div>
 
               <div className="forgot-password">
-                <a  className="forgot-link">
-                  Forgot your password?
-                </a>
+                <a className="forgot-link">Forgot your password?</a>
               </div>
 
-          <button
-  className="login-button"
-  onClick={handleLogin}
-  disabled={isLoading}
->
-  {isLoading ? (
-    <span className="login-spinner"></span>
-  ) : (
-    "Login to Account"
-  )}
-</button>
-
+              <button
+                className="login-button"
+                onClick={handleLogin}
+                disabled={isLoading}
+              >
+                {isLoading ? <span className="login-spinner"></span> : "Login to Account"}
+              </button>
 
               <div className="signup-prompt">
                 <p>Don't have an account?</p>
@@ -238,8 +229,6 @@ const checkLogin = async () => {
           </div>
         </div>
       </div>
-
- 
     </>
   );
 }
