@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# FIT Institute CRM - Student Portal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based student portal I built for FIT Institute. Students can log in, mark their attendance (only if they're physically on campus), and keep track of their form submissions.
 
-## Available Scripts
+This is a **frontend project** — all the UI, state management, and API integration is handled on the client side.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+# Live Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[https://institute-crm-nine.vercel.app/](https://institute-crm-nine.vercel.app/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## What It Does
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Login / Signup** – Firebase token validation on top of a regular email-password flow
+- Geo-based Attendance** – Attendance only gets marked if the student is within 150 meters of the campus. Uses the browser's geolocation API.
+- Form Submission Tracking** – Keeps the latest submission ID in Redux and localStorage so the user doesn't lose it on refresh
+- Redux Toolkit** – One slice handles user data, attendance state, and form IDs
+- Fully Responsive** – Tested on mobile, tablet, and desktop
+- Toast Notifications** – For every success/error case (using React Toastify)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Tech I Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+| What | Which |
+|------|-------|
+| Framework | React 18 + React Router DOM |
+| State | Redux Toolkit |
+| Auth | Firebase (client SDK) |
+| Styling | Plain CSS (no framework) |
+| Notifications | React Toastify |
+| Hosting | Vercel |
+| Perf Tools | PageSpeed Insights, Chrome DevTools |
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## The Performance Part (Where I Spent Most Time)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+When I first deployed this on Vercel, the mobile PageSpeed score was **79**. That bugged me, so I dug into it and got it up to **96**. Here's the whole story.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Before vs After
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+before VS after
+|--------|--------|-------|
+| Mobile Performance Score | 79 | **96** |
+| LCP (Largest Contentful Paint) | 5.6 s | **2.7 s** |
+| FCP (First Contentful Paint) | 1.1 s | ~0.9 s |
+| Total Blocking Time | 70 ms | ~30 ms |
+| Cumulative Layout Shift | 0 | 0 |
+| Accessibility | — | 92 |
+| Best Practices | — | 100 |
+| SEO | — | 100 |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### What Was Slowing It Down
 
-## Learn More
+I opened up PageSpeed Insights and Chrome DevTools, and found four things:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. A CSS animation was blocking the LCP element.** There was a `<p>` tag with `opacity: 0` and `animation: infinite` — the browser was waiting for that animation to finish before painting the "Login to Your Account" heading. That heading was the LCP element, so it was getting delayed by over a second.
+2. Firebase was loading on the first render.** The `getFirebaseToken` import was at the top of `Login.jsx`, so the whole Firebase SDK (~300KB) was being pulled in even before the user typed anything.
+3. Toastify and other imports were synchronous.** Same problem — the main thread was busy parsing stuff the user didn't need yet.
+4. No caching on Vercel.** Every visit was re-downloading the same static assets.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# What I Did
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**1. Removed the animation from the LCP element**
